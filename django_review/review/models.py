@@ -40,9 +40,9 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
     company = models.ForeignKey(Company, on_delete = models.CASCADE)
     title = models.CharField(_('Title'), max_length = 64, blank = False)
-    rating = IntegerRangeField(_('Rating'), blank = False, min = 1, max = 5)
+    rating = IntegerRangeField(_('Rating'), blank = False, min_value = 1, max_value = 5)
     summary = models.CharField(_('Summary'), max_length = 10240, blank = False)
-    ip_address = models.IPAddressField(_('Sender IP'), blank = True)
+    ip_address = models.GenericIPAddressField(_('Sender IP'), null = True ,blank = True)
     sub_date = models.DateTimeField(_('Submission Date'), auto_created = True)
     
     def __str__(self):
