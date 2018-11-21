@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.reverse import reverse
 from rest_framework.decorators import api_view
 from rest_framework import renderers
+from rest_framework.authtoken import views as rest_framework_views
 
 from .models import Review
 from .serializers import ReviewRUDSerializer, UserSerializer
