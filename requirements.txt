@@ -2,3 +2,7 @@ djangorestframework
 markdown
 coreapi
 coreapi-cli
+pytest
+pytest-django
+pytest-cov
+mixer

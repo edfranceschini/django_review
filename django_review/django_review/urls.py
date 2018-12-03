@@ -6,7 +6,7 @@ from rest_framework.schemas import get_schema_view
 schema_view = get_schema_view(title='Pastebin API')
 
 urlpatterns = [
-    path('schema/', schema_view),
+    path('schema/', schema_view, name = 'schema'),
     path('admin/', admin.site.urls),
     path('api/', include('review.api-urls')),
     
