@@ -1,2 +1,4 @@
 djangorestframework
 markdown
+coreapi
+coreapi-cli

@@ -9,7 +9,6 @@ from rest_framework.authtoken.models import Token
 
 from .fields import IntegerRangeField
 
-
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	bio = models.TextField(_('Bio '), max_length = 500, blank = True)
@@ -52,7 +51,7 @@ class Review(models.Model):
 	rating = IntegerRangeField(_('Rating'), blank = False, min_value = 1, max_value = 5)
 	summary = models.CharField(_('Summary'), max_length = 10240, blank = False)
 	ip_address = models.GenericIPAddressField(_('Sender IP'), null = True, blank = True)
-	sub_date = models.DateTimeField(_('Submission Date'), auto_created = True)
+	sub_date = models.DateTimeField(_('Submission Date'), auto_now_add = True)
 	
 	objects = ReviewQueryset.as_manager()
 	

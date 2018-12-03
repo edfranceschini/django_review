@@ -1,19 +1,15 @@
 from django.urls import path, include
-from rest_framework.urlpatterns import format_suffix_patterns
-from rest_framework.authtoken import views as rest_framework_views
-
+from rest_framework.routers import DefaultRouter
+from rest_framework.authtoken import views as authtoken_views
 
 from . import views
 
-
+router = DefaultRouter()
+router.register(r'reviews', views.ReviewViewSet)
+router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
-	path('', views.api_root),
-	path('review/<int:pk>/highlight/', views.ReviewHighlight.as_view(), name = 'review-highlight'),
-    path('review/', views.ReviewList.as_view(), name = 'review-list'),
-	path('review/<int:pk>', views.ReviewDetail.as_view(), name = 'review-detail'),
-	path('auth/', rest_framework_views.obtain_auth_token, name='get_auth_token'),
-	
+    path('token/obtain/', authtoken_views.obtain_auth_token),
+    path('auth/', include('rest_framework.urls')),
+    path('v1/', include(router.urls)),
 ]
-
-urlpatterns = format_suffix_patterns(urlpatterns)
