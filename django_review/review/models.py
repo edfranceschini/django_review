@@ -9,6 +9,7 @@ from rest_framework.authtoken.models import Token
 
 from .fields import IntegerRangeField
 
+
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
 	bio = models.TextField(_('Bio '), max_length = 500, blank = True)
@@ -57,6 +58,15 @@ class Review(models.Model):
 	
 	def __str__(self):
 		return self.title
+	
+	
+	def save(self, *args, **kwargs):
+		if self.rating < 1 or self.rating > 5:
+			raise ValueError('Ratings should be between 1 and 5')
+		if not self.ip_address:
+			self.ip_address = '127.0.0.1'
+		super(Review, self).save(*args, **kwargs)
+		
 	
 	class Meta:
 		verbose_name = _('Review')
