@@ -5,4 +5,4 @@ coreapi-cli
 pytest
 pytest-django
 pytest-cov
-mixer
+WebTest
